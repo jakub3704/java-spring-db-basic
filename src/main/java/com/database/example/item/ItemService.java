@@ -19,39 +19,39 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItemService {
 
-	@Autowired
-	ItemRepository itemRepository;
+    @Autowired
+    ItemRepository itemRepository;
 
-	public ItemDto createItem(ItemDto itemDto) {
-		Item item = new Item();
-		itemDtoToItem(itemDto, item);
-		return itemToItemDto(itemRepository.save(item));
-	}
+    public ItemDto createItem(ItemDto itemDto) {
+        Item item = new Item();
+        itemDtoToItem(itemDto, item);
+        return itemToItemDto(itemRepository.save(item));
+    }
 
-	public ItemDto updateItem(ItemDto itemDto) {
-		Item item = itemRepository.findById(itemDto.getId())
-		        .orElseThrow(() -> new RuntimeException("- Item not found ( " + itemDto.getId() + " ) -"));
-		itemDtoToItem(itemDto, item);
-		return itemToItemDto(itemRepository.save(item));
-	}
+    public ItemDto updateItem(ItemDto itemDto) {
+        Item item = itemRepository.findById(itemDto.getId())
+                .orElseThrow(() -> new RuntimeException("- Item not found ( " + itemDto.getId() + " ) -"));
+        itemDtoToItem(itemDto, item);
+        return itemToItemDto(itemRepository.save(item));
+    }
 
-	public ItemDto getItem(Long id) {
-		Item item = itemRepository.findById(id)
-		        .orElseThrow(() -> new RuntimeException("- Item not found ( " + id + " ) -"));
-		return itemToItemDto(item);
-	}
+    public ItemDto getItem(Long id) {
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("- Item not found ( " + id + " ) -"));
+        return itemToItemDto(item);
+    }
 
-	private Item itemDtoToItem(ItemDto itemDto, Item item) {
-		item.setName(itemDto.getName());
-		item.setDescription(itemDto.getDescription());
-		return item;
-	}
+    private Item itemDtoToItem(ItemDto itemDto, Item item) {
+        item.setName(itemDto.getName());
+        item.setDescription(itemDto.getDescription());
+        return item;
+    }
 
-	private ItemDto itemToItemDto(Item item) {
-		ItemDto itemDto = new ItemDto();
-		itemDto.setId(item.getId());
-		itemDto.setName(item.getName());
-		itemDto.setDescription(item.getDescription());
-		return itemDto;
-	}
+    private ItemDto itemToItemDto(Item item) {
+        ItemDto itemDto = new ItemDto();
+        itemDto.setId(item.getId());
+        itemDto.setName(item.getName());
+        itemDto.setDescription(item.getDescription());
+        return itemDto;
+    }
 }

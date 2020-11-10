@@ -25,42 +25,42 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class ItemControllerTest {
 
-	@InjectMocks
-	private ItemController itemController = new ItemController();
+    @InjectMocks
+    private ItemController itemController = new ItemController();
 
-	@Mock
-	private ItemService itemService;
+    @Mock
+    private ItemService itemService;
 
-	@Test
-	public void getItemTest() {
-		ItemDto itemDto = new ItemDto();
+    @Test
+    public void getItemTest() {
+        ItemDto itemDto = new ItemDto();
 
-		when(itemService.getItem(7L)).thenReturn(itemDto);
+        when(itemService.getItem(7L)).thenReturn(itemDto);
 
-		ItemDto result = itemController.getItem(7L);
+        ItemDto result = itemController.getItem(7L);
 
-		assertEquals(itemDto, result);
-	}
+        assertEquals(itemDto, result);
+    }
 
-	@Test
-	public void createItemTest() {
-		ItemDto itemDto = new ItemDto();
+    @Test
+    public void createItemTest() {
+        ItemDto itemDto = new ItemDto();
 
-		when(itemService.createItem(itemDto)).thenReturn(itemDto);
+        when(itemService.createItem(itemDto)).thenReturn(itemDto);
 
-		ItemDto result = itemController.createItem(itemDto);
+        ItemDto result = itemController.createItem(itemDto);
 
-		assertEquals(itemDto, result);
-	}
+        assertEquals(itemDto, result);
+    }
 
-	@Test
-	public void updateItemTest() {
-		ItemDto itemDto = new ItemDto();
+    @Test
+    public void updateItemTest() {
+        ItemDto itemDto = new ItemDto();
 
-		when(itemService.updateItem(itemDto)).thenReturn(itemDto);
+        when(itemService.updateItem(itemDto)).thenReturn(itemDto);
 
-		ItemDto result = itemController.updateItem(itemDto);
+        ItemDto result = itemController.updateItem(itemDto);
 
-		assertEquals(itemDto, result);
-	}
+        assertEquals(itemDto, result);
+    }
 }

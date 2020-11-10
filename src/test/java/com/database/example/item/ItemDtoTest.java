@@ -20,58 +20,58 @@ import org.junit.jupiter.api.Test;
 
 public class ItemDtoTest {
 
-	@Test
-	public void equalsTest() {
-		ItemDto a = new ItemDto();
-		a.setId(10L);
-		a.setName("MyExistingName");
-		a.setDescription("MyExistingDescription");
+    @Test
+    public void equalsTest() {
+        ItemDto a = new ItemDto();
+        a.setId(10L);
+        a.setName("MyExistingName");
+        a.setDescription("MyExistingDescription");
 
-		ItemDto b = new ItemDto();
-		b.setId(10L);
-		b.setName("MyExistingName");
-		b.setDescription("MyExistingDescription");
+        ItemDto b = new ItemDto();
+        b.setId(10L);
+        b.setName("MyExistingName");
+        b.setDescription("MyExistingDescription");
 
-		assertTrue(a.equals(b));
-	}
+        assertTrue(a.equals(b));
+    }
 
-	@Test
-	public void equalsTest_sameObj() {
-		ItemDto a = new ItemDto();
-		a.setId(10L);
-		a.setName("MyExistingName");
-		a.setDescription("MyExistingDescription");
+    @Test
+    public void equalsTest_sameObj() {
+        ItemDto a = new ItemDto();
+        a.setId(10L);
+        a.setName("MyExistingName");
+        a.setDescription("MyExistingDescription");
 
-		ItemDto b = a;
+        ItemDto b = a;
 
-		assertTrue(a.equals(b));
-	}
+        assertTrue(a.equals(b));
+    }
 
-	@Test
-	public void equalsTest_false() {
-		ItemDto a = new ItemDto();
-		a.setId(10L);
-		a.setName("MyExistingName");
-		a.setDescription("MyExistingDescription");
+    @Test
+    public void equalsTest_false() {
+        ItemDto a = new ItemDto();
+        a.setId(10L);
+        a.setName("MyExistingName");
+        a.setDescription("MyExistingDescription");
 
-		ItemDto b = new ItemDto();
-		b.setId(9L);
-		b.setName("MyExistingName");
-		b.setDescription("MyExistingDescription");
+        ItemDto b = new ItemDto();
+        b.setId(9L);
+        b.setName("MyExistingName");
+        b.setDescription("MyExistingDescription");
 
-		assertFalse(a.equals(b));
-	}
+        assertFalse(a.equals(b));
+    }
 
-	@SuppressWarnings("unlikely-arg-type")
-	@Test
-	public void equalsTest_falseType() {
-		ItemDto a = new ItemDto();
-		a.setId(10L);
-		a.setName("MyExistingName");
-		a.setDescription("MyExistingDescription");
+    @SuppressWarnings("unlikely-arg-type")
+    @Test
+    public void equalsTest_falseType() {
+        ItemDto a = new ItemDto();
+        a.setId(10L);
+        a.setName("MyExistingName");
+        a.setDescription("MyExistingDescription");
 
-		Item b = new Item();
+        Item b = new Item();
 
-		assertFalse(a.equals(b));
-	}
+        assertFalse(a.equals(b));
+    }
 }

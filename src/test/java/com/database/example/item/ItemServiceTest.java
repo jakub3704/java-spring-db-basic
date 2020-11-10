@@ -30,106 +30,106 @@ import static org.mockito.ArgumentMatchers.any;
 @ExtendWith(MockitoExtension.class)
 public class ItemServiceTest {
 
-	@InjectMocks
-	private ItemService itemService = new ItemService();
+    @InjectMocks
+    private ItemService itemService = new ItemService();
 
-	@Mock
-	private ItemRepository itemRepository;
+    @Mock
+    private ItemRepository itemRepository;
 
-	@Test
-	public void createItemTest() {
-		// Data preparation
-		ItemDto itemDtoInput = new ItemDto();
-		itemDtoInput.setName("MyName_");
-		itemDtoInput.setDescription("MyDescription_");
+    @Test
+    public void createItemTest() {
+        // Data preparation
+        ItemDto itemDtoInput = new ItemDto();
+        itemDtoInput.setName("MyName_");
+        itemDtoInput.setDescription("MyDescription_");
 
-		Item savedItem = new Item();
-		savedItem.setId(10L);
-		savedItem.setName("MyName");
-		savedItem.setDescription("MyDescription");
+        Item savedItem = new Item();
+        savedItem.setId(10L);
+        savedItem.setName("MyName");
+        savedItem.setDescription("MyDescription");
 
-		// Mock setting
-		when(itemRepository.save(any(Item.class))).thenReturn(savedItem);
+        // Mock setting
+        when(itemRepository.save(any(Item.class))).thenReturn(savedItem);
 
-		// Method Testing
-		ItemDto itemDtoResult = itemService.createItem(itemDtoInput);
+        // Method Testing
+        ItemDto itemDtoResult = itemService.createItem(itemDtoInput);
 
-		// Assert Test Results
-		assertEquals(Long.valueOf(10L), itemDtoResult.getId());
-		assertEquals("MyName", itemDtoResult.getName());
-		assertEquals("MyDescription", itemDtoResult.getDescription());
-	}
+        // Assert Test Results
+        assertEquals(Long.valueOf(10L), itemDtoResult.getId());
+        assertEquals("MyName", itemDtoResult.getName());
+        assertEquals("MyDescription", itemDtoResult.getDescription());
+    }
 
-	@Test
-	public void updateItemTest() {
-		// Data preparation
-		Item existingItem = new Item();
-		existingItem.setId(10L);
-		existingItem.setName("MyExistingName");
-		existingItem.setDescription("MyExistingDescription");
+    @Test
+    public void updateItemTest() {
+        // Data preparation
+        Item existingItem = new Item();
+        existingItem.setId(10L);
+        existingItem.setName("MyExistingName");
+        existingItem.setDescription("MyExistingDescription");
 
-		ItemDto itemDtoInput = new ItemDto();
-		itemDtoInput.setId(10L);
-		itemDtoInput.setName("MyNewName");
-		itemDtoInput.setDescription("MyNewDescription");
+        ItemDto itemDtoInput = new ItemDto();
+        itemDtoInput.setId(10L);
+        itemDtoInput.setName("MyNewName");
+        itemDtoInput.setDescription("MyNewDescription");
 
-		Item savedItem = new Item();
-		savedItem.setId(10L);
-		savedItem.setName("MyNewName");
-		savedItem.setDescription("MyNewDescription");
+        Item savedItem = new Item();
+        savedItem.setId(10L);
+        savedItem.setName("MyNewName");
+        savedItem.setDescription("MyNewDescription");
 
-		// Mock setting
-		when(itemRepository.findById(itemDtoInput.getId())).thenReturn(Optional.of(existingItem));
-		when(itemRepository.save(any(Item.class))).thenReturn(savedItem);
+        // Mock setting
+        when(itemRepository.findById(itemDtoInput.getId())).thenReturn(Optional.of(existingItem));
+        when(itemRepository.save(any(Item.class))).thenReturn(savedItem);
 
-		// Method Testing
-		ItemDto itemDtoResult = itemService.updateItem(itemDtoInput);
+        // Method Testing
+        ItemDto itemDtoResult = itemService.updateItem(itemDtoInput);
 
-		// Assert Test Results
-		assertEquals(Long.valueOf(10L), itemDtoResult.getId());
-		assertEquals("MyNewName", itemDtoResult.getName());
-		assertEquals("MyNewDescription", itemDtoResult.getDescription());
-	}
+        // Assert Test Results
+        assertEquals(Long.valueOf(10L), itemDtoResult.getId());
+        assertEquals("MyNewName", itemDtoResult.getName());
+        assertEquals("MyNewDescription", itemDtoResult.getDescription());
+    }
 
-	@Test
-	public void updateItemTest_notFound() {
-		// Data preparation
-		ItemDto itemDtoInput = new ItemDto();
-		itemDtoInput.setId(10L);
+    @Test
+    public void updateItemTest_notFound() {
+        // Data preparation
+        ItemDto itemDtoInput = new ItemDto();
+        itemDtoInput.setId(10L);
 
-		// Mock setting
-		when(itemRepository.findById(10L)).thenReturn(Optional.empty());
+        // Mock setting
+        when(itemRepository.findById(10L)).thenReturn(Optional.empty());
 
-		// Method Testing and Assert Throws
-		assertThrows(RuntimeException.class, () -> itemService.updateItem(itemDtoInput));
-	}
+        // Method Testing and Assert Throws
+        assertThrows(RuntimeException.class, () -> itemService.updateItem(itemDtoInput));
+    }
 
-	@Test
-	public void getItemTest() {
-		// Data preparation
-		Item existingItem = new Item();
-		existingItem.setId(10L);
-		existingItem.setName("MyExistingName");
-		existingItem.setDescription("MyExistingDescription");
+    @Test
+    public void getItemTest() {
+        // Data preparation
+        Item existingItem = new Item();
+        existingItem.setId(10L);
+        existingItem.setName("MyExistingName");
+        existingItem.setDescription("MyExistingDescription");
 
-		// Mock setting
-		when(itemRepository.findById(10L)).thenReturn(Optional.of(existingItem));
+        // Mock setting
+        when(itemRepository.findById(10L)).thenReturn(Optional.of(existingItem));
 
-		// Method Testing
-		ItemDto itemDtoResult = itemService.getItem(10L);
+        // Method Testing
+        ItemDto itemDtoResult = itemService.getItem(10L);
 
-		// Assert Test Results
-		assertEquals(Long.valueOf(10L), itemDtoResult.getId());
-		assertEquals("MyExistingName", itemDtoResult.getName());
-		assertEquals("MyExistingDescription", itemDtoResult.getDescription());
-	}
+        // Assert Test Results
+        assertEquals(Long.valueOf(10L), itemDtoResult.getId());
+        assertEquals("MyExistingName", itemDtoResult.getName());
+        assertEquals("MyExistingDescription", itemDtoResult.getDescription());
+    }
 
-	@Test
-	public void getItemTest_notFound() {
-		// Mock setting
-		when(itemRepository.findById(10L)).thenReturn(Optional.empty());
+    @Test
+    public void getItemTest_notFound() {
+        // Mock setting
+        when(itemRepository.findById(10L)).thenReturn(Optional.empty());
 
-		// Method Testing and Assert Throws
-		assertThrows(RuntimeException.class, () -> itemService.getItem(10L));
-	}
+        // Method Testing and Assert Throws
+        assertThrows(RuntimeException.class, () -> itemService.getItem(10L));
+    }
 }
