@@ -62,6 +62,7 @@ public class ItemTest {
     	assertFalse(a.equals(b));
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void equalsTest_falseType() {
     	Item a = new Item();
@@ -70,9 +71,6 @@ public class ItemTest {
     	a.setDescription("MyExistingDescription");
     	
     	ItemDto b = new ItemDto();
-    	b.setId(10L);
-    	b.setName("MyExistingName");
-    	b.setDescription("MyExistingDescription");
     	
     	assertFalse(a.equals(b));
 	}

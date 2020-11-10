@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class ItemDtoTest {
+	
 	@Test
 	public void equalsTest() {
 		ItemDto a = new ItemDto();
@@ -61,6 +62,7 @@ public class ItemDtoTest {
     	assertFalse(a.equals(b));
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void equalsTest_falseType() {
 		ItemDto a = new ItemDto();
@@ -69,9 +71,6 @@ public class ItemDtoTest {
     	a.setDescription("MyExistingDescription");
     	
     	Item b = new Item();
-    	b.setId(10L);
-    	b.setName("MyExistingName");
-    	b.setDescription("MyExistingDescription");
     	
     	assertFalse(a.equals(b));
 	}
