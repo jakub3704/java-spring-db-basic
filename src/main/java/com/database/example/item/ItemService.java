@@ -30,14 +30,14 @@ public class ItemService {
 
 	public ItemDto updateItem(ItemDto itemDto) {
 		Item item = itemRepository.findById(itemDto.getId())
-				.orElseThrow(() -> new RuntimeException("- Item not found ( " + itemDto.getId() + " ) -"));
+		        .orElseThrow(() -> new RuntimeException("- Item not found ( " + itemDto.getId() + " ) -"));
 		itemDtoToItem(itemDto, item);
 		return itemToItemDto(itemRepository.save(item));
 	}
 
 	public ItemDto getItem(Long id) {
 		Item item = itemRepository.findById(id)
-				.orElseThrow(() -> new RuntimeException("- Item not found ( " + id + " ) -"));
+		        .orElseThrow(() -> new RuntimeException("- Item not found ( " + id + " ) -"));
 		return itemToItemDto(item);
 	}
 
