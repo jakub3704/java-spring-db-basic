@@ -13,32 +13,37 @@
 
 package com.database.example.item;
 
-public class ItemDto {  
-    private Long id;
-    
-    private String name;
-    
-    private String description;
-    
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
+public class ItemDto {
+	private Long id;
+
+	private String name;
+
+	private String description;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -48,7 +53,7 @@ public class ItemDto {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -74,6 +79,6 @@ public class ItemDto {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
-	}    
-    
+	}
+
 }
